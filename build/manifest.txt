@@ -1,0 +1,2 @@
+Main-Class: MainCL
+Class-Path: commons-cli-1.4.jar
