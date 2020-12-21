@@ -11,4 +11,4 @@ javac -d ./build -cp ":./libs/commons-cli-1.4.jar" *.java
 #JAR all of the classes and JAR libs in ./build.
 cd ./build
 jar cfm RegexTool.jar manifest.txt *.{class,jar}
-java -jar ./RegexTool.jar -f ./manifest.txt
+java -jar ./RegexTool.jar

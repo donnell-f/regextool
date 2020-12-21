@@ -4,7 +4,6 @@ import java.util.regex.Pattern;
 import org.apache.commons.cli.*;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 class MainCL
@@ -15,6 +14,8 @@ class MainCL
 		String thestuff = "";
 		String thepattern = "";
 		int capgroup = 0;
+
+
 
 		//Define the terminal options that should be recognised and what they do.
 		Options opt = new Options();
@@ -39,9 +40,11 @@ class MainCL
             return;
 		}
 		
-		//==Arg Linting==//
+
+
+		//== Arg Linting ==//
 		
-		/*if(cmd.hasOption("f") && cmd.hasOption("s"))
+		if(cmd.hasOption("f") && cmd.hasOption("s"))
 		{
 			System.out.println("Error: Can't use both file and input");
 			return;
@@ -67,9 +70,12 @@ class MainCL
 		{
 			System.out.println("Error: Capture group must be a number.");
 			return;
-		}*/
+		}
 
-		//==Variable Filling==//
+
+
+		//== Variable Filling ==//
+
 		if(cmd.hasOption("f"))
 		{
 			try
@@ -83,16 +89,48 @@ class MainCL
 				}
 				
 				sc.close();
-
-				System.out.println(thestuff);
 			}
 			catch (Exception e) { System.out.println("Error parsing file."); }
+		}
+
+		if(cmd.hasOption("s"))
+		{
+			thestuff = cmd.getOptionValue("s");
+		}
+
+		if(cmd.hasOption("r"))
+		{
+			thepattern = cmd.getOptionValue("r");
+		}
+
+		if(cmd.hasOption("g"))
+		{
+			capgroup = (int)( Integer.parseInt( cmd.getOptionValue("g") ) );
+		}
+		else
+		{
+			capgroup = 0;
 		}
 		
 
 
+		//== Regex ==//
 
-		//final Pattern thepat = Pattern.compile("");
+		final Pattern pat = Pattern.compile(thepattern);
+		Matcher matching = pat.matcher(thestuff);
+
+		if(matching.find())
+		{
+			try
+			{
+				System.out.println(matching.group(capgroup));
+			}
+			catch (Exception e)
+			{
+				System.out.println("Error: capture group out of range.");
+			}
+		}
+
 	}
 
 }
