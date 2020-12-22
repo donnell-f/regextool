@@ -1,2 +1,2 @@
 Main-Class: MainCL
-Class-Path: commons-cli-1.4.jar
+Class-Path: commons-cli-1.4.jar commons-lang3.jar commons-text-1.9.jar

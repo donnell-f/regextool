@@ -1,7 +1,13 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.cli.*;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.ParseException;
+
+import org.apache.commons.text.StringEscapeUtils;
 
 import java.io.File;
 import java.util.Scanner;
@@ -95,7 +101,7 @@ class MainCL
 
 		if(cmd.hasOption("s"))
 		{
-			thestuff = cmd.getOptionValue("s");
+			thestuff = StringEscapeUtils.unescapeJava(cmd.getOptionValue("s"));
 		}
 
 		if(cmd.hasOption("r"))
