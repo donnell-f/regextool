@@ -3,10 +3,11 @@
 #include <unistd.h> 
 #include <string.h>
 
-//The Regextool launcher... the product of bash not working well with regex.
+//The Regextool launcher... this is the product of bash not working well with regex.
 
 int main( int argc, char *argv[] )
 {
+    //Go to the directory with the actual .jar file.
     chdir("./build");
     
 
@@ -73,11 +74,6 @@ int main( int argc, char *argv[] )
         }
         
     }
-
-    //==DEBUG==//
-    printf("%s\n", cmd_final);
-
-    
 
     //For reading the output stream from the command + args (cmd_final).
     FILE *fp;

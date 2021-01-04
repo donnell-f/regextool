@@ -27,11 +27,12 @@ class MainCL
 		//Define the terminal options that should be recognised and what they do.
 		Options opt = new Options();
 		
-		opt.addOption("f", "file", true, "Path to a (f)ile with the input.");
-		opt.addOption("s", "single", true, "(S)ingle-line formatted string input.");
-		opt.addOption("r", "regex", true, "(R)egex pattern to use.");
-		opt.addOption("g", "group", true, "Capture (g)roup to print. The whole match will be printed if you leave this blank.");
-		opt.addOption("p", "replace", true, "Re(p)lacement text. Switch to replace mode and replace the group with other text instead of selecting it.");
+		opt.addOption("", "help", false, "Show the help message.");
+		opt.addOption("f", "file", true, "Use the path to a (f)ile as the input.");
+		opt.addOption("s", "single", true, "Use a (s)ingle-line string as the input. Note: escape sequences apply.");
+		opt.addOption("r", "regex", true, "The (r)egex pattern to use.");
+		opt.addOption("g", "group", true, "The capture (g)roup to print or replace. The whole match will be selected if you leave this blank.");
+		opt.addOption("p", "replace", true, "The re(p)lacement text. Replaces the selected text instead of printing it.");
 
 		//Make a parser to get the arg values.
 		CommandLineParser parser = new DefaultParser();
@@ -48,28 +49,29 @@ class MainCL
             System.out.println("Error: Can't parse arguments for some reason.");
             return;
 		}
-		
+	
 
 
 
 
 		//==== Arg Linting ====//
 		
-		if( args.length == 0 )
+		if( args.length == 0 || cmd.hasOption("help"))
 		{
 			System.out.println("Regextool - easy regex on-demand.");
 			System.out.println("");
 			System.out.println("Usage: regextool {-s | -f} -r [-p] [-g]");
-			System.out.println("-f, --file | Path to a (f)ile with the input.");
-			System.out.println("-s, --single | (S)ingle-line formatted string input.");
-			System.out.println("-r, --regex | (R)egex pattern to use.");
-			System.out.println("-g, --group | Capture (g)roup to print. The whole match will be printed if you leave this blank.");
-			System.out.println("-p, --replace | Re(p)lacement text. Switch to replace mode and replace the group with other text instead of selecting it.");
+			System.out.println("--help | Show the help message.");
+			System.out.println("-f, --file | Use the path to a (f)ile as the input.");
+			System.out.println("-s, --single | Use a (s)ingle-line string as the input. Note: escape sequences apply.");
+			System.out.println("-r, --regex | The (r)egex pattern to use.");
+			System.out.println("-g, --group | The capture (g)roup to print or replace. The whole match will be selected if you leave this blank.");
+			System.out.println("-p, --replace | The re(p)lacement text. Replaces the selected text instead of printing it.");
 			System.out.println("");
 			System.out.println("Examples:");
-			System.out.println("1 - Parse text between quotes in a file: regextool -f \"/path/to/file\" -r \"(\\\"([^\\\"]+)\\\")\" -g 2");
-			System.out.println("2 - Parse text between quotes in a one-line string: regextool -s \"look at all \\\"these\\\" \\\"quotes\\\"!!!\" -r \"(\\\"([^\\\"]+)\\\")\" -g 2");
-			System.out.println("3 - Replace text between quotes with \"i have not slept in days\": regextool -f \"/path/to/file\" -r \"(\\\"([^\\\"]+)\\\")\" -g 2 -p \"i have not slept in days\"");
+			System.out.println("1 - Parse text between quotes in a file: ./regextool -f \"/path/to/file\" -r \"(\\\"([^\\\"]+)\\\")\" -g 2");
+			System.out.println("2 - Parse text between quotes in a one-line string: ./regextool -s \"look at all \\\"these\\\" \\\"quotes\\\"!!!\" -r \"(\\\"([^\\\"]+)\\\")\" -g 2");
+			System.out.println("3 - Replace text between quotes with \"i have not slept in days\": ./regextool -f \"/path/to/file\" -r \"(\\\"([^\\\"]+)\\\")\" -g 2 -p \"i have not slept in days\"");
 			return;
 		}
 		
@@ -93,9 +95,6 @@ class MainCL
 			System.out.println("Error: Must have a regex pattern.");
 			return;
 		}
-
-
-
 
 
 
@@ -188,7 +187,7 @@ class MainCL
 		}
 
 	}
-
+	
 	public static String replaceAllGroup(String input, String pat, String repl, int group)
 	{
 		Matcher m = Pattern.compile(pat).matcher(input);
@@ -224,7 +223,6 @@ class MainCL
 		}
 
 		newStr += input.substring(ends.get(lenIndices-1), strEnd);
-
 
 		return newStr;
 	}
