@@ -55,6 +55,24 @@ class MainCL
 
 		//==== Arg Linting ====//
 		
+		if( args.length == 0 )
+		{
+			System.out.println("Regextool - easy regex on-demand.");
+			System.out.println("");
+			System.out.println("Usage: regextool {-s | -f} -r [-p] [-g]");
+			System.out.println("-f, --file | Path to a (f)ile with the input.");
+			System.out.println("-s, --single | (S)ingle-line formatted string input.");
+			System.out.println("-r, --regex | (R)egex pattern to use.");
+			System.out.println("-g, --group | Capture (g)roup to print. The whole match will be printed if you leave this blank.");
+			System.out.println("-p, --replace | Re(p)lacement text. Switch to replace mode and replace the group with other text instead of selecting it.");
+			System.out.println("");
+			System.out.println("Examples:");
+			System.out.println("1 - Parse text between quotes in a file: regextool -f \"/path/to/file\" -r \"(\\\"([^\\\"]+)\\\")\" -g 2");
+			System.out.println("2 - Parse text between quotes in a one-line string: regextool -s \"look at all \\\"these\\\" \\\"quotes\\\"!!!\" -r \"(\\\"([^\\\"]+)\\\")\" -g 2");
+			System.out.println("3 - Replace text between quotes with \"i have not slept in days\": regextool -f \"/path/to/file\" -r \"(\\\"([^\\\"]+)\\\")\" -g 2 -p \"i have not slept in days\"");
+			return;
+		}
+		
 		//Make sure the user is only using one input type.
 		if(cmd.hasOption("f") && cmd.hasOption("s"))
 		{
