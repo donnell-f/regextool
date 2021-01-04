@@ -68,10 +68,8 @@ class MainCL
 			System.out.println("-g, --group | The capture (g)roup to print or replace. The whole match will be selected if you leave this blank.");
 			System.out.println("-p, --replace | The re(p)lacement text. Replaces the selected text instead of printing it.");
 			System.out.println("");
-			System.out.println("Examples:");
-			System.out.println("1 - Parse text between quotes in a file: ./regextool -f \"/path/to/file\" -r \"(\\\"([^\\\"]+)\\\")\" -g 2");
-			System.out.println("2 - Parse text between quotes in a one-line string: ./regextool -s \"look at all \\\"these\\\" \\\"quotes\\\"!!!\" -r \"(\\\"([^\\\"]+)\\\")\" -g 2");
-			System.out.println("3 - Replace text between quotes with \"i have not slept in days\": ./regextool -f \"/path/to/file\" -r \"(\\\"([^\\\"]+)\\\")\" -g 2 -p \"i have not slept in days\"");
+			System.out.println("Example:");
+			System.out.println("./regextool -s \"i \\\"hate\\\" this\" -r \"(\\\"([^\\\"]+)\\\")\" -g 2");
 			return;
 		}
 		
