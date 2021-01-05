@@ -29,3 +29,4 @@ RegexTool is a simple app I created to make regex replacement and selection easy
 ./regextool -s "lorem lorem ipsum ipsum dolor lorem..." -r "(lor)(em)" -g 2 -p "emit"
 ./regextool -s "lorax lorrey lord lorem ipsum legit lorem..." -r "(lor)(\S+)" -g 2
 ```
+Note: examples are intended to run from the project directory.
