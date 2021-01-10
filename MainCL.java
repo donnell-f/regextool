@@ -141,6 +141,7 @@ class MainCL
 				sc.close();
 			}
 			catch (Exception e) { System.out.println("Error parsing file."); return; }
+
 		}
 
 		//Read the string input that the user gives.
@@ -205,23 +206,29 @@ class MainCL
 		int strEnd = input.length();
 		String newStr = "";
 
-
-		newStr += input.substring(0, starts.get(0));
-
-		for(int i = 0; i < lenIndices; i++)
+		if(starts.size() > 0)
 		{
-			//Add I-th match to the output string.
-			newStr += repl;
+			newStr += input.substring(0, starts.get(0));
 
-			//Add the bit after that and inbetween the (I+1)-th match to the output string.
-			if( (i+1) < lenIndices )
+			for(int i = 0; i < lenIndices; i++)
 			{
-				newStr += input.substring(ends.get(i), starts.get(i+1));
+				//Add I-th match to the output string.
+				newStr += repl;
+	
+				//Add the bit after that and inbetween the (I+1)-th match to the output string.
+				if( (i+1) < lenIndices )
+				{
+					newStr += input.substring(ends.get(i), starts.get(i+1));
+				}
 			}
+	
+			newStr += input.substring(ends.get(lenIndices-1), strEnd);
+
+			return newStr;
 		}
-
-		newStr += input.substring(ends.get(lenIndices-1), strEnd);
-
-		return newStr;
+		else
+		{
+			return input;
+		}
 	}
 }
