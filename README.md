@@ -33,5 +33,5 @@ Note: examples are intended to run from the project directory.
 
 
 ### Warnings:
-- Because this is a CLI app, you may have to double escape your regex. For instance the \S token (any non-whitespace) should be typed as \\S.
+- Because this is a CLI app, you may have to double escape your regex. For instance the \S token (any non-whitespace character) should be typed as \\S.
 - This is Java regex so it may work slightly differently than the PCRE regex we all know and love.
