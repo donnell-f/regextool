@@ -30,3 +30,8 @@ RegexTool is a simple app I created to make regex replacement and selection easy
 ./regextool -s "lorax lorrey lord lorem ipsum legit lorem..." -r "(lor)(\S+)" -g 2
 ```
 Note: examples are intended to run from the project directory.
+
+
+### Warnings:
+- Because this is a CLI app, you may have to double escape your regex. For instance the \w token (any non-whitespace) should be typed as \\w.
+- This is Java regex so it may work slightly differently than the PCRE regex we all know and love.
